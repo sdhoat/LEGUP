@@ -1,0 +1,61 @@
+LEGUP: Minesweeper
+Rules
+Inverse Minesweeper, the goal is to uncover all cells on the board that do not contain mines, rather than flagging the mines themselves. The puzzle mechanics are derived from classic Minesweeper, but the solving process is inverted. Here's the logic explained:
+
+Board Setup
+- The board is a grid where each cell either contains a mine or is empty.
+- Some cells contain a number indicating how many neighboring cells (including diagonally adjacent ones) contain mines. This number helps the player infer the location of mines.
+- The player wins when they have correctly uncovered all the non-mine cells and left all the mined cells covered.
+
+Basic Rules
+Uncovering Safe Cells: The player needs to uncover cells that do **not** contain mines. The number in a revealed cell provides a clue to the number of adjacent mines.
+Numbers Indicating Mines:
+A number in a cell tells how many of the adjacent cells are mines. For example, if a cell shows "3", then exactly 3 out of its 8 surrounding cells are mines.
+By analyzing these numbers, players can deduce which nearby cells must be mines and avoid uncovering them.
+Empty Cells: If a player uncovers an empty cell (i.e., one that contains no number and no mine), this means none of the surrounding cells are mines. This often leads to a chain reaction where adjacent empty cells are automatically revealed, helping clear large portions of the board quickly.
+
+Contradiction Rule (Losing Condition)
+Revealing a Mine
+If a player mistakenly uncovers a mine, they lose the game. The challenge is to logically deduce which cells are safe to reveal using the numbers provided, without revealing a mine.
+
+Case Rule (Possible Paths)
+Uncertainty Handling:
+When uncertain about which cells are mines, players often need to evaluate multiple scenarios based on clues from the numbers. They may need to explore both possible paths (whether a cell is safe or mined) and eliminate one based on logical contradictions.
+
+Contradiction Rules
+Too Many or Too Few Mines Nearby:
+If a player reveals a number that conflicts with the mine placements (e.g., a "2" that only has one possible mine nearby), this is a contradiction, and the current solution path can be ruled out.
+Mine Deduction Conflicts:
+A contradiction arises when the mine count surrounding a number exceeds or falls short of what the number indicates. This rules out incorrect placements of mines and helps in refining the player’s strategy.
+
+Puzzle-Specific Rules
+All Non-Mine Cells Must Be Uncovered:
+The game isn't complete until all non-mine cells are revealed. Any remaining covered cells must either be mines or unexplored safe cells.
+Uncovering Adjacent Numbers:
+Players need to use the information from the numbers to safely uncover cells. For example, if a cell shows "0", all adjacent cells are safe to uncover, because there are no mines nearby.
+
+Game Progression
+As the player uncovers cells, they gradually gather more information, making it easier to deduce the location of mines.
+Numbers provide hints for safe cells, and players need to avoid revealing cells that are deduced to contain mines.
+
+Endgame
+The game ends when the player has successfully uncovered all the safe cells (non-mine cells) or loses by uncovering a mine.
+In LEGUP's logic framework, the puzzle would implement rules to ensure players can reason through each step logically, flagging contradictions when they misapply a rule or make an incorrect deduction.
+
+Rule Types in Inverse Minesweeper
+Basic Rule:
+A cell with a number indicates the exact number of mines in its adjacent cells. If all neighboring mines are accounted for, remaining adjacent cells must be safe.
+Contradiction Rule:
+If a player uncovers too few or too many mines around a numbered cell, it results in a contradiction, signaling an incorrect move.
+Case Rule:
+In cases where there are multiple possible scenarios (e.g., a mine could be in one of several nearby cells), players may need to consider each path, ruling out incorrect ones by identifying contradictions.
+Organization and Classes
+A new directory under src/main/java/edu/rpi/legup/puzzle has been made called minesweeper. The constructor and the following abstract methods have been implemented and overridden:
+public void initializeView()
+public Board generatePuzzle(int difficulty)
+public boolean isBoardComplete(Board board)
+public void onBoardChange(Board board)
+
+
+
+
