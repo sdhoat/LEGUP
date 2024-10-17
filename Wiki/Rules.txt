@@ -41,3 +41,12 @@ Endgame
 The game ends when the player has successfully uncovered all the safe cells (non-mine cells) or loses by uncovering a mine.
 In LEGUP's logic framework, the puzzle would implement rules to ensure players can reason through each step logically, flagging contradictions when they misapply a rule or make an incorrect deduction.
 
+Rule Types in Inverse Minesweeper
+Basic Rule:
+A cell with a number indicates the exact number of mines in its adjacent cells. If all neighboring mines are accounted for, remaining adjacent cells must be safe.
+Contradiction Rule:
+If a player uncovers too few or too many mines around a numbered cell, it results in a contradiction, signaling an incorrect move.
+Case Rule:
+In cases where there are multiple possible scenarios (e.g., a mine could be in one of several nearby cells), players may need to consider each path, ruling out incorrect ones by identifying contradictions.
+
+

@@ -1,0 +1,6 @@
+Organization and Classes
+A new directory under src/main/java/edu/rpi/legup/puzzle has been made called minesweeper. The constructor and the following abstract methods have been implemented and overridden:
+public void initializeView()
+public Board generatePuzzle(int difficulty)
+public boolean isBoardComplete(Board board)
+public void onBoardChange(Board board)
