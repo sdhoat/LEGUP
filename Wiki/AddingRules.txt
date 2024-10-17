@@ -16,3 +16,30 @@ getDefaultBoard: Creates a board with all forced bombs marked, based on the cons
 Possible Improvements:
 Edge Cases: Consider situations with no unset cells adjacent to flags; you may want a check to handle this and prevent unnecessary rule application.
 Exception Handling: Adding exceptions or error handling when unexpected tile types are encountered could improve robustness, particularly for unexpected tile states.
+
+LessBombsThanFlagContradictionRule
+Purpose: This contradiction rule ensures that there are enough bombs surrounding a flagged cell to meet its requirement.
+Key Methods:
+checkContradictionAt: Checks adjacent cells around a flagged cell and counts empty cells. If the number of empty cells is higher than the required number, a contradiction is returned.
+Possible Improvements:
+Contradiction Message: Customizing the contradiction message to include information on the number of bombs and empty cells could improve user feedback.
+Performance Optimization: If many tiles are already determined, the method could skip checking to prevent redundant calculations.
+
+MoreBombsThanFlagContradictionRule
+Purpose: This rule checks that the number of bombs around a flagged cell doesn’t exceed the flag’s specified number.
+Key Methods:
+checkContradictionAt: Calculates adjacent bombs and returns a contradiction if their count surpasses the flag’s requirement.
+Possible Improvements:
+Enhanced Checks: Consider early exits if the flagged cell’s adjacent count is already valid, to reduce computation.
+Error Messaging: Add specific details about the excess bomb count for better user diagnostics.
+
+SatisfyFlagCaseRule
+Purpose: This case rule explores all valid ways to arrange bombs and empty cells around a flagged cell to satisfy the flag count.
+Key Methods:
+getCaseBoard: Identifies flagged cells with unset adjacent cells, marking them as pickable for case analysis.
+getCases: Generates combinations of bomb and empty placements around flagged cells that satisfy the tile’s requirements.
+checkRuleRaw: Confirms that the modified cells align with a valid 3x3 grid around a flagged cell.
+Possible Improvements:
+Validation Logic: Ensure that case generation does not create duplicate or redundant cases.
+Optimizing checkRuleRaw: Given the complexity of validating modified cells within a 3x3 grid, consider modularizing the code for easier debugging and maintenance. Additionally, check that the rule applies to flagged cells only to avoid processing unrelated cell
+
