@@ -1,0 +1,18 @@
+BombOrFilledCaseRule
+Purpose: This rule sets up a case split where a cell can either be a bomb or empty.
+Key Methods:
+getCaseBoard: Prepares a board with pickable cells that are "unset," allowing users to decide if each cell is a bomb or empty.
+getCases: Generates two cases by setting the cell as a bomb in one case and as empty in the other.
+checkRuleRaw: Validates that the rule has exactly two branches (bomb and empty) and that they modify the same cell.
+Possible Improvements:
+Error Messages: Ensure that error messages are descriptive and specific to help users understand incorrect applications.
+Optimization: You could add checks to avoid creating redundant cases if a cell is already marked as a bomb or empty, saving processing time.
+
+FinishWithBombsDirectRule
+Purpose: This rule completes cells around a flagged cell if only bombs are needed to fulfill the number.
+Key Methods:
+checkRuleRawAt: Validates that each unset cell around a flag must be a bomb if required by the number of flags.
+getDefaultBoard: Creates a board with all forced bombs marked, based on the constraints around flagged cells.
+Possible Improvements:
+Edge Cases: Consider situations with no unset cells adjacent to flags; you may want a check to handle this and prevent unnecessary rule application.
+Exception Handling: Adding exceptions or error handling when unexpected tile types are encountered could improve robustness, particularly for unexpected tile states.
