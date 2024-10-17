@@ -26,3 +26,18 @@ Too Many or Too Few Mines Nearby:
 If a player reveals a number that conflicts with the mine placements (e.g., a "2" that only has one possible mine nearby), this is a contradiction, and the current solution path can be ruled out.
 Mine Deduction Conflicts:
 A contradiction arises when the mine count surrounding a number exceeds or falls short of what the number indicates. This rules out incorrect placements of mines and helps in refining the player’s strategy.
+
+Puzzle-Specific Rules
+All Non-Mine Cells Must Be Uncovered:
+The game isn't complete until all non-mine cells are revealed. Any remaining covered cells must either be mines or unexplored safe cells.
+Uncovering Adjacent Numbers:
+Players need to use the information from the numbers to safely uncover cells. For example, if a cell shows "0", all adjacent cells are safe to uncover, because there are no mines nearby.
+
+Game Progression
+As the player uncovers cells, they gradually gather more information, making it easier to deduce the location of mines.
+Numbers provide hints for safe cells, and players need to avoid revealing cells that are deduced to contain mines.
+
+Endgame
+The game ends when the player has successfully uncovered all the safe cells (non-mine cells) or loses by uncovering a mine.
+In LEGUP's logic framework, the puzzle would implement rules to ensure players can reason through each step logically, flagging contradictions when they misapply a rule or make an incorrect deduction.
+
