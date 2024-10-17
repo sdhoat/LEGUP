@@ -1,0 +1,14 @@
+Directory Setup
+Create a new directory under src/main/java/edu/rpi/legup/puzzle called minesweeper. In LEGUP, each puzzle extends the abstract class edu.rpi.legup.model.Puzzle and implements the following required methods:
+public void initializeView()
+public Board generatePuzzle(int difficulty)
+public boolean isBoardComplete(Board board)
+public void onBoardChange(Board board)
+Some methods may not perform any actions if not required by the puzzle, such as puzzle generation or responding to board changes. We start with the Minesweeper class, which sets up basic functionality by implementing these methods.
+Puzzle Class Implementation
+Board Implementation
+The MinesweeperBoard class extends the GridBoard, which provides a grid-based layout appropriate for Minesweeper. Here, the cells are represented by MinesweeperCell objects, each corresponding to a position on the board. This class also includes a deep copy method, which creates an independent duplicate of the board.
+Cell Representation
+Each cell on the Minesweeper board is represented by the MinesweeperCell class, which extends GridCell. This class includes methods to handle cell types (e.g., bomb, flag) and the associated data. Each cell can be copied to allow board duplication. The method setType adjusts cell states based on user interaction.
+Tile Types
+We define the types of tiles in MinesweeperTileType. Each tile type represents a cell's state, including empty cells, bombs, and flags indicating the number of adjacent bombs.
