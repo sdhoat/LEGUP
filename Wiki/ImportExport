@@ -16,3 +16,18 @@ Potential Improvements:
 Error Handling: The method handles exceptions like NumberFormatException and NullPointerException, but providing more specific error messages when parsing fails could help users debug invalid input files.
 Dimension Logic: If the board’s width, height, or size attributes are incorrectly formatted or missing, you could expand the validation logic to handle these cases more gracefully and provide detailed feedback.
 Refactor Redundant Code: The loops that initialize cells (both for set cells and default cells) could be refactored into a helper method to avoid code duplication between setting parsed cells and filling in unset ones.
+
+MinesweeperCellFactory
+Purpose: This factory handles the creation and export of individual Minesweeper cells from XML data. It extends ElementFactory and provides methods to import/export Minesweeper cells.
+Key Methods:
+importCell: Reads a Node (representing a cell in the XML) and constructs a MinesweeperCell from its attributes (`data`, `x`, `y`). The method also checks the bounds of the cell’s position and validates the data value.
+exportCell: Converts a MinesweeperCell into an XML element with its data, x, and y attributes, and appends it to the document.
+Potential Improvements:
+Error Messages: The InvalidFileFormatException messages could include more context about which specific attributes or values caused the error to help with troubleshooting.
+Edge Case Handling: Ensure that cells outside the defined board dimensions are properly handled to avoid potential crashes when reading corrupted or improperly formatted files.
+Expand Cell Data: If Minesweeper cells have additional attributes (e.g., modifiability, flags), consider expanding the XML schema to export these properties for a more comprehensive save format.
+
+General Considerations for Import/Export:
+File Structure: The XML structure used here is straightforward and efficient for storing Minesweeper puzzles. It effectively serializes each cell’s location and state, making it easy to save and reload a puzzle.
+Validation: During import, it’s crucial to ensure that invalid cell values or dimensions do not break the game. More rigorous validation (such as checking for negative or out-of-bounds values) would help avoid corrupted boards being loaded.
+Compatibility: If you plan to support future versions of the puzzle or more complex configurations (e.g., custom rules, larger grids), ensure the export format is flexible enough to be extended without breaking backward compatibility.
