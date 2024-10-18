@@ -1,0 +1,14 @@
+MinesweeperElementView
+Purpose: This class extends `GridElementView` to visually represent each cell in the Minesweeper game based on its type (e.g., flag, bomb, empty, unset).
+Key Methods:
+Constructor: Accepts a `MinesweeperCell` and passes it to the parent class for processing.
+getPuzzleElement: Returns the specific `MinesweeperCell` used in the Minesweeper puzzle.
+drawElement: This method handles rendering the cell based on its state:
+Flagged Cells: Draws a flag symbol, with text indicating the bomb count.
+Unset Cells: Draws a dark gray cell with a border.
+Empty Cells: Draws a light gray cell with an empty image to indicate that it has no adjacent bombs.
+Bomb Cells: Draws a light gray cell with a bomb image.
+Potential Improvements:
+Duplicate Logic: Consider refactoring to remove duplicate drawing code. For instance, all states use `graphics2D.drawRect()` to create borders, which could be factored out to reduce redundancy.
+Color Customization: If Minesweeper variants require different color schemes or fonts, consider making these configurable or adding more variety.
+Error Handling: Ensure that `getData()` in `drawElement` always returns valid data types; consider adding checks for unexpected states.
