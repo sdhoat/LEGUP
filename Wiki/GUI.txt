@@ -12,3 +12,26 @@ Potential Improvements:
 Duplicate Logic: Consider refactoring to remove duplicate drawing code. For instance, all states use `graphics2D.drawRect()` to create borders, which could be factored out to reduce redundancy.
 Color Customization: If Minesweeper variants require different color schemes or fonts, consider making these configurable or adding more variety.
 Error Handling: Ensure that `getData()` in `drawElement` always returns valid data types; consider adding checks for unexpected states.
+
+MinesweeperController
+Purpose: This class controls user interaction with the Minesweeper board. It handles mouse events to update cell states and handles right- and left-click actions to modify the board accordingly.
+Key Methods:
+getNewCellDataOnClick: Determines the new cell data based on the mouse event:
+Left click (Button 1) increments the cell's data.
+Right click (Button 2 or 3) decrements the data.
+Default case resets the cell to empty.
+changeCell: Updates the clicked cell's data based on user interaction, calling the `getNewCellDataOnClick` method to determine the next state. If the `Ctrl` key is pressed, it shows a context menu for further options.
+Potential Improvements:
+Edge Case Handling: Ensure that extreme values of the cell’s data (e.g., very large or small numbers) are handled correctly, particularly in edge cases where a value might be outside the valid range (0-8).
+Enhanced User Interaction: Consider adding hover effects or animations to provide feedback for user actions.
+Control Flow: If the cell is already in a fixed state (like a bomb that cannot change), it might be worth adding logic to skip over such cells in `changeCell()` to avoid unnecessary updates.
+
+initializeView Method
+Purpose: This method is responsible for setting up the graphical interface and registering event listeners for the Minesweeper board.
+Key Steps:
+Setting the Board View: Assigns a MinesweeperView (which aggregates MinesweeperElementView`s) to visually display the board.
+Add Listeners: Registers a listener to the board view to respond to user interactions.
+Potential Improvements:
+Performance Considerations: If the board is large, ensure that only necessary portions are re-rendered when the user interacts with cells. This can prevent performance bottlenecks in cases with many cells.
+Customizability: Allow for dynamic board resizing or custom layouts by making the `MinesweeperView` more flexible in handling various grid dimensions.
+
