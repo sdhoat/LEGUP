@@ -1,0 +1,18 @@
+MinesweeperExporter
+Purpose: This class is responsible for exporting the Minesweeper board into XML format. It extends the `PuzzleExporter` class and implements the method `createBoardElement`, which converts the board and its cells into an XML representation.
+Key Methods:
+createBoardElement: Constructs the `board` XML element by extracting the board's dimensions (width and height) and iterating through all cells to append their data as child elements. If a cell's data is not "unset," it is included in the export.
+Potential Improvements:
+Simplify Board Access: The current logic checks if the board is retrieved from the puzzle’s tree root or the board view, which might be streamlined. You could simplify by defaulting to one access method or clearly distinguishing between tree-based and view-based exporting.
+Optional Attributes: If any other cell attributes (like state or flags) need to be saved, you might consider expanding the XML representation to handle them.
+
+MinesweeperImporter
+Purpose: This class reads and initializes the Minesweeper board from XML files. It extends PuzzleImporter and implements the initializeBoard methods to read from either dimensions input (rows/columns) or a DOM node structure.
+Key Methods:
+initializeBoard (rows, columns): Sets up a new Minesweeper board of the specified size and initializes all cells with the default "unset" state.
+initializeBoard (Node node): Parses an XML node (representing the board) and extracts cells from it. Cells that are not "unset" are marked as modifiable and given.
+getMinesweeperBoard: Helper method that constructs the `MinesweeperBoard` by reading size, width, and height attributes from the board element.
+Potential Improvements:
+Error Handling: The method handles exceptions like NumberFormatException and NullPointerException, but providing more specific error messages when parsing fails could help users debug invalid input files.
+Dimension Logic: If the board’s width, height, or size attributes are incorrectly formatted or missing, you could expand the validation logic to handle these cases more gracefully and provide detailed feedback.
+Refactor Redundant Code: The loops that initialize cells (both for set cells and default cells) could be refactored into a helper method to avoid code duplication between setting parsed cells and filling in unset ones.
